@@ -58,6 +58,3 @@ Anything I do more than twice becomes a **skill file**. OTel instrumentation, te
 
 I try to **keep context files lean**. Stale context is worse than no context. If a note is outdated, I delete it rather than letting it confuse the agent.
 
-## License
-
-MIT
