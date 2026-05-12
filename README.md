@@ -34,9 +34,7 @@ Then it puts together a plan: milestones, tech stack, data findings. I can accep
 
 ### 4. Implement
 
-The agent writes code and I review after each chunk. Not at the end -- after each one. If something drifts, I correct it right away.
-
-Letting the agent run for 20 minutes unsupervised and then discovering it went sideways -- that's 20 minutes wasted.
+The agent writes code and I review as needed. If something drifts, I correct it.
 
 ### 5. Next session
 
