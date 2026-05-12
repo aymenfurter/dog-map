@@ -4,7 +4,7 @@ Most people open a chat, type "build me X," and hope for the best. That works fo
 
 I use five phases. They're not complicated, but skipping any of them costs me time. Here's what that looks like in practice, using a recent project as an example.
 
-> **Live demo:** The sample project built with this workflow is deployed at the GitHub Pages site for this repo.
+> **Live demo:** The sample project built with this workflow is deployed at [aymenfurter.github.io/dog-map](https://aymenfurter.github.io/dog-map/).
 
 ## The Phases
 
