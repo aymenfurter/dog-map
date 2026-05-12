@@ -16,7 +16,7 @@ Before anyone writes code, I need facts. What does the API actually return? What
 
 The agent helps here. In this project I had it spin up research subagents to find all the CSV datasets on Zurich's open data portal. It came back with 16 data sources and their URLs.
 
-<img src="images/02-research.png" alt="The agent running research subagents to find data sources" width="700">
+<img src="images/02-research.png" alt="The agent running research subagents to find data sources">
 
 This matters because agents will confidently make up API endpoints that don't exist. You have to ground them first.
 
@@ -26,11 +26,11 @@ We turn the braindump into actual tasks. Pick an architecture, figure out the or
 
 It asks clarifying questions -- what did I mean by "animated" patterns? What should the fun facts view show?
 
-<img src="images/03-brainstorm.png" alt="The agent asking clarifying questions" width="700">
+<img src="images/03-brainstorm.png" alt="The agent asking clarifying questions">
 
 Then it puts together a plan: milestones, tech stack, data findings. I can accept it, change it, or throw it out. Nobody has written any code yet.
 
-<img src="images/03-plan.png" alt="The agent presenting a structured plan for review" width="700">
+<img src="images/03-plan.png" alt="The agent presenting a structured plan for review">
 
 ### 4. Implement
 
