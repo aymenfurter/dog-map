@@ -8,7 +8,7 @@ I use five phases. Here's what that actually looks like, using a recent project 
 
 ### 1. Braindump
 
-I open a file and dump everything in my head. What I want, why I want it, half-baked ideas, edge cases I'm already worried about. I don't try to organize it. The agent can't read my mind, so this file has to do the job instead.
+I record my ideas by voice and paste the transcript into a file. It's messy -- half-formed sentences, tangents, repetition. I don't clean it up. The agent can't read my mind, so this raw transcript has to do the job instead.
 
 ### 2. Research
 
