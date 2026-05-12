@@ -1,74 +1,64 @@
-# How I Work With AI Coding Agents
+# How I work with AI coding agents
 
-Most people open a chat, type "build me X," and hope for the best. That works for small stuff. For anything real, you need a process.
+I use five phases. Here's what that actually looks like, using a recent project as an example.
 
-I use five phases. They're not complicated, but skipping any of them costs me time. Here's what that looks like in practice, using a recent project as an example.
+> **Live demo:** [aymenfurter.github.io/dog-map](https://aymenfurter.github.io/dog-map/)
 
-> **Live demo:** The sample project built with this workflow is deployed at [aymenfurter.github.io/dog-map](https://aymenfurter.github.io/dog-map/).
-
-## The Phases
+## The phases
 
 ### 1. Braindump
 
-I dump everything in my head into a file. Stream of consciousness. What I want, why, half-baked ideas, edge cases I'm already worried about. No structure, no editing.
-
-The agent can't read my mind. This file is the closest substitute.
+I open a file and dump everything in my head. What I want, why I want it, half-baked ideas, edge cases I'm already worried about. I don't try to organize it. The agent can't read my mind, so this file has to do the job instead.
 
 ### 2. Research
 
-Before anyone writes code, I collect the facts. API endpoints, data schemas, library docs, whatever the project depends on. The agent helps here -- I point it at data sources and it goes digging.
+Before anyone writes code, I need facts. What does the API actually return? What does the data look like? Which libraries exist for this?
 
-In this project, I had the agent spin up research subagents to track down all the CSV datasets from Zurich's open data portal. It came back with 16 data sources, URLs and all.
+The agent helps here. In this project I had it spin up research subagents to find all the CSV datasets on Zurich's open data portal. It came back with 16 data sources and their URLs.
 
 <img src="images/02-research.png" alt="The agent running research subagents to find data sources" width="700">
 
-The point: stop the agent from making things up about APIs that don't exist or libraries that work differently than it thinks.
+This matters because agents will confidently make up API endpoints that don't exist. You have to ground them first.
 
 ### 3. Plan
 
-I brainstorm with the agent. We break the braindump into tasks, pick an architecture, sequence the work. The agent proposes, I push back, we iterate.
+We turn the braindump into actual tasks. Pick an architecture, figure out the order of work. The agent proposes, I push back, we go back and forth.
 
-The agent asks clarifying questions -- what did I mean by "animated" patterns? What should the fun facts view actually show? I answer, it refines.
+It asks clarifying questions -- what did I mean by "animated" patterns? What should the fun facts view show?
 
 <img src="images/03-brainstorm.png" alt="The agent asking clarifying questions" width="700">
 
-Then it puts together a full plan with phases, tech stack decisions, and key data findings. I accept it, modify it, or scrap it before a single line of code gets written.
+Then it puts together a plan: milestones, tech stack, data findings. I can accept it, change it, or throw it out. Nobody has written any code yet.
 
 <img src="images/03-plan.png" alt="The agent presenting a structured plan for review" width="700">
 
-No code yet. Just a plan we both agree on.
-
 ### 4. Implement
 
-The agent writes code. I review after each chunk, not at the end. If something is off, I say so immediately.
+The agent writes code and I review after each chunk. Not at the end -- after each one. If something drifts, I correct it right away.
 
-Small iterations. Fast feedback. The worst outcome is letting the agent run for 20 minutes unsupervised and then discovering it went in the wrong direction.
+Letting the agent run for 20 minutes unsupervised and then discovering it went sideways -- that's 20 minutes wasted.
 
-### 5. Next Session
+### 5. Next session
 
-At the end of a session, I write a short summary: what got done, what's left, any decisions or blockers. This becomes the starting context for the next conversation.
+At the end of a session I write a short summary: what got done, what's left, any decisions or blockers. This becomes the starting point for the next conversation.
 
-Without it, every session starts cold. The agent has zero memory between conversations, so this handoff doc is the only continuity you get.
+Agents have zero memory between sessions. Without this handoff, every conversation starts from scratch.
 
 ## Tactics
 
-The phases are the structure. These habits make each phase sharper.
+A few things that make the phases above work better in practice.
 
-**Ground the agent in real docs.** I use MS Learn MCP so the agent pulls from current documentation instead of relying on training data. When it cites an API, I want it citing the real one.
+I use **MS Learn MCP** to ground the agent in current docs. When it cites an API, I want it citing the real one, not something from its training data.
 
-**Sandbox execution.** Everything runs in a devcontainer. The agent can install packages, run scripts, break things -- none of it touches my machine.
+I run everything in a **devcontainer**. The agent can install packages, run scripts, break things, and none of it touches my actual machine.
 
-**Review working code, not just diffs.** I ask the agent to write e2e tests alongside features. If the test passes, I trust the code more. Linting and security scanning happen automatically (DevSecOps), so by the time I look at it, the obvious stuff is already caught. Optimize for review throughput, not PR count.
+I have the agent write **e2e tests** alongside features. If the test passes, I trust the code more. Linting and security scanning run automatically, so by the time I look at the code, the mechanical stuff is already caught. I care about review throughput, not how many PRs get opened.
 
-**Ask for variants.** Instead of accepting the first solution: "Redesign this app, give me 5 options." Seeing multiple approaches side by side is faster than iterating on one.
+Instead of accepting the first approach, I ask for **variants**: "Redesign this, give me 5 options." I can also tell it to **spawn subagents** so each option gets explored in parallel. For decisions that really matter I'll have it use **different models** for each variant -- Claude, Gemini, GPT -- because they have different blind spots.
 
-**Spawn subagents for parallel exploration.** Same prompt, taken further: "Give me 5 options, spawn subagents for each." Each variant gets deep exploration simultaneously.
+Anything I do more than twice becomes a **skill file**. OTel instrumentation, test scaffolding, deployment configs. Write the instructions once and the agent reuses them.
 
-**Mix models.** For important decisions: "Give me 5 options, spawn subagents for each, one with Claude, one with Gemini, one with GPT." Different models, different blind spots.
-
-**Use skills for repetitive work.** Anything I do more than twice becomes a skill -- OTel instrumentation, test scaffolding, deployment configs. Front-load the instructions once, reuse forever.
-
-**Keep context healthy.** Stale context is worse than no context. Keep context files lean, remove outdated notes, don't dump the entire codebase into the conversation.
+I try to **keep context files lean**. Stale context is worse than no context. If a note is outdated, I delete it rather than letting it confuse the agent.
 
 ## License
 
